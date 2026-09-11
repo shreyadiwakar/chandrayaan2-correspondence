@@ -34,6 +34,7 @@ const upload = multer({ storage });
 
 // Serve static assets & frontend files
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/src', express.static(path.join(__dirname, 'src')));
 app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
 app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
 
