@@ -1,0 +1,16 @@
+{
+  "name": "chandrayaan2-correspondence",
+  "version": "1.0.0",
+  "description": "Multi-modal, Sun angle and scale invariant lunar image correspondence using Chandrayaan-2 datasets (OHRC, TMC-2, IIRS)",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

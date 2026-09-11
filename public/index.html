@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chandrayaan-2 Lunar Image Correspondence System | Sub-Pixel Image Registration</title>
+  <meta name="description"
+    content="Multi-modal, Sun angle and scale invariant image correspondence using Chandrayaan-2 optical images (OHRC, TMC-2, IIRS) with sub-pixel accuracy and uniform spatial distribution.">
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body class="bg-black text-slate-100 antialiased font-sans">
+
+  <!-- Minimal Header Banner (Top Left Title & Top Right ISRO - Absolute / Non-Floating) -->
+  <header class="absolute top-6 left-6 right-6 sm:left-8 sm:right-8 z-50 flex items-center justify-between pointer-events-none select-none">
+    <h1 class="text-xs sm:text-sm font-bold tracking-[0.2em] text-slate-100 font-mono uppercase drop-shadow-lg">
+      CHANDRAYAAN-2 LUNAR IMAGE CORRESPONDENCE
+    </h1>
+    <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-cyan-400 font-mono uppercase drop-shadow-lg">
+      ISRO
+    </span>
+  </header>
+
+  <!-- Cinematic Sky Hero Section (h-[700vh] for slow cinematic scroll) -->
+  <section id="heroSky" class="relative h-[700vh] z-10">
+    <div class="sticky top-0 flex h-screen items-center justify-center overflow-hidden space-bg border-b border-cyan-500/20">
+      
+      <!-- Twinkling Starfield Layer (positioned inside hero animation section behind Earth & Moon) -->
+      <div id="starfieldContainer" class="absolute inset-0 pointer-events-none overflow-hidden z-0"></div>
+
+      <!-- Centered Glowing Earth Layer (Enlarged Animation) -->
+      <div id="heroEarthContainer"
+        class="absolute z-[2] flex aspect-square w-[min(90vw,44rem)] items-center justify-center pointer-events-none">
+        <div class="absolute inset-0" style="transform: perspective(1200px) rotateX(68deg);">
+          <div class="absolute inset-0 rounded-full border border-cyan-500/40"></div>
+          <div class="absolute inset-[14%] rounded-full border border-indigo-500/30"></div>
+        </div>
+        <img src="/assets/earth-night.png" alt="Planet Earth at Night"
+          class="relative w-[52%] select-none drop-shadow-[0_0_80px_rgba(56,189,248,0.5)] animate-drift">
+      </div>
+
+      <!-- Orbiting & Spiraling Moon Layer (Enlarged Animation) -->
+      <img id="heroMoon" src="/assets/moon.png" alt="Moon Orbiting Earth"
+        class="absolute w-[min(88vw,46rem)] select-none rounded-full will-change-transform pointer-events-none">
+
+      <!-- Centered Text Overlay Layer (Start & End Titles Only) -->
+      <div id="heroTextOverlay"
+        class="pointer-events-none absolute inset-0 z-[10] flex items-center justify-center px-6 text-center">
+
+        <!-- Start Title (at 0% scroll) -->
+        <h1 id="heroStartTitle"
+          class="absolute max-w-3xl text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight drop-shadow-[0_4px_30px_rgba(0,0,0,0.9)]">
+          Sub-Pixel Lunar Surface Image Registration
+        </h1>
+
+        <!-- End Title (at 100% scroll) -->
+        <h2 id="heroEndTitle"
+          class="absolute max-w-4xl text-base sm:text-xl font-medium tracking-wide text-cyan-200 leading-relaxed bg-slate-950/75 backdrop-blur-lg px-8 py-5 rounded-2xl border border-cyan-500/40 shadow-2xl shadow-cyan-500/20 opacity-0">
+          Multi-modal, Sun angle and scale invariant image correspondence using Chandrayaan-2 optical images (OHRC, TMC and IIRS)
+        </h2>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Main Workspace Section with Clear Milky Way Dark Sky Background -->
+  <div class="relative overflow-hidden py-12">
+    <!-- Ultra-Clear Milky Way Dark Night Sky Background Image Layer -->
+    <div class="absolute inset-0 bg-cover bg-center opacity-100 pointer-events-none z-0" style="background-image: url('/assets/milkyway-dark-sky.jpg');"></div>
+    
+    <main id="workspaceSection" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+    <!-- Dual Upload Component Section -->
+    <section id="uploadSection" class="relative py-12">
+
+      <!-- Dotted Orbital Background Rings Decor -->
+      <div class="pointer-events-none absolute inset-0 flex items-center justify-center z-0 opacity-50">
+        <div class="w-[460px] h-[460px] rounded-full border border-dashed border-cyan-400/40 animate-spin-slow"></div>
+        <div class="absolute w-[620px] h-[620px] rounded-full border border-dashed border-indigo-400/30"></div>
+        <div class="absolute w-[780px] h-[780px] rounded-full border border-white/10"></div>
+      </div>
+
+      <!-- Overlapping Dual Upload Glass Panels -->
+      <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
+
+        <!-- Card 01: Source Image (Moving) -->
+        <div
+          class="glass-card relative rounded-3xl p-6 border border-white/10 bg-slate-950/40 backdrop-blur-xl flex flex-col justify-between space-y-6 shadow-2xl transition-all duration-300 hover:border-cyan-400/40 hover:bg-slate-950/60">
+          <div class="flex items-center justify-between font-mono text-xs text-slate-400">
+            <span class="text-2xl font-serif font-light text-slate-200">01</span>
+            <span class="uppercase tracking-[0.2em] text-cyan-400 font-semibold">SOURCE IMAGE (MOVING)</span>
+          </div>
+
+          <!-- Transparent Inset Dropzone -->
+          <label
+            class="relative group cursor-pointer border border-dashed border-white/15 hover:border-cyan-400/50 rounded-2xl p-8 bg-transparent hover:bg-white/[0.04] transition-all flex flex-col items-center justify-center text-center space-y-3 min-h-[230px] overflow-hidden">
+            <input type="file" id="sourceUploadInput" accept="image/*" class="hidden">
+            <div
+              class="w-12 h-12 rounded-full bg-white/5 border border-white/20 flex items-center justify-center text-slate-200 shadow-md group-hover:scale-110 group-hover:bg-cyan-500/20 group-hover:text-cyan-300 group-hover:border-cyan-400/40 transition-all">
+              <i data-lucide="plus" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm text-slate-200 group-hover:text-white transition-colors">Upload image</div>
+              <div class="text-xs text-slate-400 mt-1 font-mono">PNG or JPG, up to 10 MB</div>
+            </div>
+
+            <!-- Upload Preview Overlay -->
+            <div id="sourcePreviewContainer" class="absolute inset-0 rounded-2xl overflow-hidden bg-slate-950 z-20">
+              <img id="sourceImg" src="/assets/ohrc_source.jpg" alt="Source Upload Preview" class="w-full h-full object-cover">
+              <div
+                class="absolute bottom-2 left-2 right-2 px-3 py-1.5 rounded-lg bg-slate-950/85 backdrop-blur border border-slate-800 text-[11px] font-mono text-cyan-400 flex justify-between items-center">
+                <span class="truncate max-w-[180px]">OHRC Source Image</span>
+                <span id="sourceSensor" class="px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/30 text-[10px]">Loaded</span>
+              </div>
+            </div>
+          </label>
+
+          <p class="text-xs text-slate-300 leading-relaxed font-sans">
+            The image that is to be geometrically transformed to align with the reference image.
+          </p>
+        </div>
+
+        <!-- Card 02: Reference Image (Fixed) -->
+        <div
+          class="glass-card relative rounded-3xl p-6 border border-white/10 bg-slate-950/40 backdrop-blur-xl flex flex-col justify-between space-y-6 shadow-2xl transition-all duration-300 hover:border-indigo-400/40 hover:bg-slate-950/60">
+          <div class="flex items-center justify-between font-mono text-xs text-slate-400">
+            <span class="text-2xl font-serif font-light text-slate-200">02</span>
+            <span class="uppercase tracking-[0.2em] text-indigo-400 font-semibold">REFERENCE IMAGE (FIXED)</span>
+          </div>
+
+          <!-- Inset Dropzone -->
+          <label
+            class="relative group cursor-pointer border border-dashed border-white/15 hover:border-indigo-400/50 rounded-2xl p-8 bg-transparent hover:bg-white/[0.04] transition-all flex flex-col items-center justify-center text-center space-y-3 min-h-[230px] overflow-hidden">
+            <input type="file" id="refUploadInput" accept="image/*" class="hidden">
+            <div
+              class="w-12 h-12 rounded-full bg-white/5 border border-white/20 flex items-center justify-center text-slate-200 shadow-md group-hover:scale-110 group-hover:bg-indigo-500/20 group-hover:text-indigo-300 transition-all">
+              <i data-lucide="plus" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm text-slate-200 group-hover:text-white transition-colors">Upload image</div>
+              <div class="text-xs text-slate-400 mt-1 font-mono">PNG or JPG, up to 10 MB</div>
+            </div>
+
+            <!-- Upload Preview Overlay -->
+            <div id="refPreviewContainer" class="absolute inset-0 rounded-2xl overflow-hidden bg-slate-950 z-20">
+              <img id="refImg" src="/assets/tmc_ref.jpg" alt="Reference Upload Preview" class="w-full h-full object-cover">
+              <div
+                class="absolute bottom-2 left-2 right-2 px-3 py-1.5 rounded-lg bg-slate-950/85 backdrop-blur border border-slate-800 text-[11px] font-mono text-emerald-400 flex justify-between items-center">
+                <span class="truncate max-w-[180px]">TMC-2 Reference Image</span>
+                <span id="refSensor" class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/30 text-[10px]">Loaded</span>
+              </div>
+            </div>
+          </label>
+
+          <p class="text-xs text-slate-300 leading-relaxed font-sans">
+            The target image about which source image is to be geometrically transformed.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Pipeline Software Architecture Overview -->
+    <section class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+      <div class="flex items-center gap-2 border-b border-slate-800 pb-3">
+        <i data-lucide="cpu" class="w-5 h-5 text-cyan-400"></i>
+        <h2 class="font-bold text-slate-200 text-sm tracking-wider uppercase">Generic Software Solution Pipeline
+          Architecture</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
+        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 space-y-1">
+          <div class="font-bold text-cyan-400 font-mono">1. Preprocessing</div>
+          <p class="text-slate-400">Panchromatic & IR band normalization, solar azimuth alignment.</p>
+        </div>
+        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 space-y-1">
+          <div class="font-bold text-cyan-400 font-mono">2. Feature Detection</div>
+          <p class="text-slate-400">Sun-angle invariant gradient descriptors & multi-scale pyramid.</p>
+        </div>
+        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 space-y-1">
+          <div class="font-bold text-cyan-400 font-mono">3. Uniform Binning</div>
+          <p class="text-slate-400">N x N spatial tile constraint preventing keypoint clustering.</p>
+        </div>
+        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 space-y-1">
+          <div class="font-bold text-cyan-400 font-mono">4. Sub-Pixel Fit</div>
+          <p class="text-slate-400">2D quadratic surface interpolation achieving &lt;0.20px accuracy.</p>
+        </div>
+        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 space-y-1">
+          <div class="font-bold text-cyan-400 font-mono">5. Transformation</div>
+          <p class="text-slate-400">RANSAC Homography warp & seamless spatial alignment.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>Chandrayaan-2 Image Correspondence Software • OHRC, TMC-2 & IIRS Payloads</div>
+      <div class="font-mono">Sub-Pixel Accuracy: &lt; 0.20 pixels • ISRO Science Guidelines</div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
