@@ -17,32 +17,26 @@
 }
 
 body {
-  background-color: #000000;
-  background-image: url('/assets/milkyway-dark-sky.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+  background: transparent;
   color: #f8fafc;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
 }
 
-/* 100% Fixed Milky Way Background Layer */
+/* Fixed Global Milky Way Sky Wallpaper Layer */
 #globalFixedSky {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  background-image: url('/assets/milkyway-dark-sky.jpg') !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  background-image: url('/assets/milkyway-dark-sky.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  pointer-events: none;
 }
 
 /* Starfield & Space Keyframe Animations */
@@ -607,7 +601,8 @@ body {
 }
 
 .space-bg {
-  background: radial-gradient(circle at 50% 50%, #030712 0%, #000000 100%);
+  background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(14, 165, 233, 0.12), transparent 70%),
+              radial-gradient(ellipse 70% 50% at 50% 80%, rgba(99, 102, 241, 0.08), transparent 70%);
 }
 
 .will-change-transform {

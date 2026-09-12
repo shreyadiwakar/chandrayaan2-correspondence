@@ -585,9 +585,14 @@ function initCinematicSkyHero() {
     }
     const p = currentP;
 
-    // Fixed background starfield (no vertical scroll translation)
+    // Fixed background sky & starfield (no vertical scroll translation)
     if (starfieldContainer) {
       starfieldContainer.style.transform = 'none';
+    }
+    if (starLayers.length >= 3) {
+      starLayers[0].style.transform = 'none';
+      starLayers[1].style.transform = 'none';
+      starLayers[2].style.transform = 'none';
     }
 
     // Moon Orbital Revolution & Spiral Zoom equations
@@ -620,17 +625,6 @@ function initCinematicSkyHero() {
       moonImg.style.opacity = '1';
       moonImg.style.transform = `translate3d(${x}vmin, ${y}vmin, 0) scale(${currentScale.toFixed(4)})`;
       moonImg.style.filter = `brightness(${0.60 + depth * 0.20 + merge * 0.25}) drop-shadow(0 0 ${25 + merge * 45}px rgba(56, 189, 248, 0.4))`;
-    }
-
-    // Ethereal Volumetric Lunar Clouds (Orange, Silver White, Teal)
-    const cloudsImg = document.getElementById('heroClouds');
-    if (cloudsImg) {
-      const cloudsIn = ramp(p, 0.30, 0.50);
-      const cloudY = y + 10 * currentScale;
-      cloudsImg.style.zIndex = '4';
-      cloudsImg.style.opacity = cloudsIn.toFixed(4);
-      cloudsImg.style.transform = `translate3d(${x}vmin, ${cloudY.toFixed(2)}vmin, 0) scale(${(currentScale * 1.35).toFixed(4)})`;
-      cloudsImg.style.filter = `brightness(1.25) drop-shadow(0 0 45px rgba(56, 189, 248, 0.5))`;
     }
 
     // Start & End Typography Opacity & Translation Ramps

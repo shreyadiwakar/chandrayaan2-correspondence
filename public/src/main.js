@@ -585,14 +585,14 @@ function initCinematicSkyHero() {
     }
     const p = currentP;
 
-    // Starfield parallax driven by global page scroll across the COMPLETE website
+    // Fixed background sky & starfield (no vertical scroll translation)
     if (starfieldContainer) {
-      starfieldContainer.style.transform = `scale(${1 + globalP * 0.15})`;
+      starfieldContainer.style.transform = 'none';
     }
     if (starLayers.length >= 3) {
-      starLayers[0].style.transform = `translate3d(0, ${globalP * 120}px, 0)`;
-      starLayers[1].style.transform = `translate3d(0, ${globalP * 280}px, 0)`;
-      starLayers[2].style.transform = `translate3d(0, ${globalP * 500}px, 0)`;
+      starLayers[0].style.transform = 'none';
+      starLayers[1].style.transform = 'none';
+      starLayers[2].style.transform = 'none';
     }
 
     // Moon Orbital Revolution & Spiral Zoom equations
