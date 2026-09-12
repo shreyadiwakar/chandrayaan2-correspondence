@@ -606,12 +606,11 @@ function initCinematicSkyHero() {
 
     const depth = (Math.sin(theta) + 1) / 2; // 0 = far behind, 1 = near
     const orbitScale = 0.85 + depth * 0.15;
-    const zoom = 0.20 + ramp(p, 0.20, 0.50) * 0.45; // crisp, elegant full moon scale (~0.65)
+    const zoom = 0.20 + ramp(p, 0.20, 0.50) * 0.45; // crisp full moon scale (~0.65)
 
-    // Moon stays at clean full moon scale while second title displays over it,
-    // then gently expands to ~2.8x at the end (p = 0.80 -> 1.0) to smoothly exit frame
-    const giantExpand = ramp(p, 0.80, 1.0) * 2.2;
-    const currentScale = (zoom * orbitScale) + giantExpand;
+    // Moon zooms smoothly up to max ~1.10x so it stays strictly INSIDE the frame of the screen
+    const expandInFrame = ramp(p, 0.50, 1.0) * 0.45;
+    const currentScale = (zoom * orbitScale) + expandInFrame;
 
     // Earth stays visible as Moon merges on top, then gently fades out
     const earthOut = ramp(p, 0.25, 0.50);
