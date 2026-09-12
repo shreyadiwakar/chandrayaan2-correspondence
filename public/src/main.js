@@ -596,24 +596,25 @@ function initCinematicSkyHero() {
     }
 
     // Moon Orbital Revolution & Spiral Zoom equations
-    const spin = Math.min(1, p / 0.55);
+    const spin = Math.min(1, p / 0.50);
     const theta = spin * Math.PI * 3.5 - Math.PI / 2;
 
-    const merge = ramp(p, 0.25, 0.55);
-    const radius = 40 * (1 - merge); // vmin -> 0 at p=0.55 (Moon centers completely over screen!)
+    const merge = ramp(p, 0.20, 0.50);
+    const radius = 40 * (1 - merge); // vmin -> 0 at p=0.50 (Moon centers completely over screen!)
     const x = Math.cos(theta) * radius;
     const y = Math.sin(theta) * radius * 0.34;
 
     const depth = (Math.sin(theta) + 1) / 2; // 0 = far behind, 1 = near
-    const orbitScale = 0.92 + depth * 0.16;
-    const zoom = 0.15 + ramp(p, 0.25, 0.55) * 0.45;
+    const orbitScale = 0.85 + depth * 0.15;
+    const zoom = 0.20 + ramp(p, 0.20, 0.50) * 0.45; // crisp, elegant full moon scale (~0.65)
 
-    // Continue increasing Moon size until it expands and goes completely OUT OF FRAME (up to ~14x scale)
-    const giantExpand = ramp(p, 0.55, 1.0) * 13.5;
+    // Moon stays at clean full moon scale while second title displays over it,
+    // then gently expands to ~2.8x at the end (p = 0.80 -> 1.0) to smoothly exit frame
+    const giantExpand = ramp(p, 0.80, 1.0) * 2.2;
     const currentScale = (zoom * orbitScale) + giantExpand;
 
     // Earth stays visible as Moon merges on top, then gently fades out
-    const earthOut = ramp(p, 0.30, 0.55);
+    const earthOut = ramp(p, 0.25, 0.50);
 
     if (earthContainer) {
       earthContainer.style.opacity = (1 - earthOut).toFixed(4);
@@ -624,24 +625,24 @@ function initCinematicSkyHero() {
       moonImg.style.zIndex = (depth > 0.5 || merge > 0.4) ? '3' : '1';
       moonImg.style.opacity = '1';
       moonImg.style.transform = `translate3d(${x}vmin, ${y}vmin, 0) scale(${currentScale.toFixed(4)})`;
-      moonImg.style.filter = `brightness(${0.55 + depth * 0.25 + merge * 0.3}) drop-shadow(0 0 ${30 + merge * 70}px rgba(56, 189, 248, 0.5))`;
+      moonImg.style.filter = `brightness(${0.60 + depth * 0.20 + merge * 0.25}) drop-shadow(0 0 ${25 + merge * 45}px rgba(56, 189, 248, 0.4))`;
     }
 
     // Start & End Typography Opacity & Translation Ramps
-    // 1. Start Title stays visible over Earth, then fades out as Moon centers (p = 0.30 -> 0.52)
+    // 1. Start Title stays visible over Earth, then fades out as Moon centers (p = 0.25 -> 0.48)
     if (startTitle) {
-      const startOut = ramp(p, 0.30, 0.52);
+      const startOut = ramp(p, 0.25, 0.48);
       startTitle.style.opacity = (1 - startOut).toFixed(4);
       startTitle.style.transform = `translateY(${-startOut * 35}px)`;
     }
-    // 2. End Title appears slowly OVER the Moon AFTER Moon appears completely (p >= 0.55),
+    // 2. End Title appears slowly OVER the Moon AFTER Moon appears completely (p >= 0.50),
     // and stays fully visible until the hero animation completes (p >= 0.95)
     if (endTitle) {
-      const endIn = ramp(p, 0.55, 0.70);
+      const endIn = ramp(p, 0.50, 0.68);
       const endOut = ramp(p, 0.95, 1.0);
       const finalOpacity = endIn * (1 - endOut);
       endTitle.style.opacity = finalOpacity.toFixed(4);
-      endTitle.style.transform = `translate(-50%, -50%) scale(${0.92 + endIn * 0.08})`;
+      endTitle.style.transform = `translate(-50%, -50%) scale(${0.94 + endIn * 0.06})`;
     }
 
     requestAnimationFrame(loop);
