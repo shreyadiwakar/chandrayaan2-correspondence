@@ -22,9 +22,12 @@
 
 <body class="bg-black text-slate-100 antialiased font-sans">
 
-  <!-- 100% Fixed Milky Way Night Sky Background Layer (Pinned to Viewport, Never Scrolls) -->
-  <div id="fixedGlobalBg" class="fixed inset-0 pointer-events-none select-none z-0 bg-cover bg-center bg-no-repeat"
-    style="background-image: url('/assets/milkyway-dark-sky.jpg');"></div>
+  <!-- Global 100% Fixed Milky Way & Starfield Background Wallpaper (Covers entire website, 100% fixed) -->
+  <div id="globalFixedSky" class="fixed inset-0 pointer-events-none select-none z-0 overflow-hidden bg-cover bg-center"
+    style="background-image: url('/assets/milkyway-dark-sky.jpg');">
+    <!-- Twinkling Starfield Layer -->
+    <div id="starfieldContainer" class="absolute inset-0 pointer-events-none overflow-hidden z-0"></div>
+  </div>
 
   <!-- Minimal Header Banner (Top Left Title & Top Right ISRO - Absolute / Non-Floating) -->
   <header
@@ -39,11 +42,7 @@
 
   <!-- Cinematic Sky Hero Section (h-[700vh] for slow cinematic scroll) -->
   <section id="heroSky" class="relative h-[700vh] z-10">
-    <div
-      class="sticky top-0 flex h-screen items-center justify-center overflow-hidden space-bg border-b border-cyan-500/20">
-
-      <!-- Twinkling Starfield Layer (positioned inside hero animation section behind Earth & Moon) -->
-      <div id="starfieldContainer" class="absolute inset-0 pointer-events-none overflow-hidden z-0"></div>
+    <div class="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
 
       <!-- Centered Glowing Earth Layer (Enlarged Animation) -->
       <div id="heroEarthContainer"

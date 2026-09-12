@@ -585,9 +585,14 @@ function initCinematicSkyHero() {
     }
     const p = currentP;
 
-    // Fixed background starfield (no vertical scroll translation)
+    // Starfield parallax driven by global page scroll across the COMPLETE website
     if (starfieldContainer) {
-      starfieldContainer.style.transform = 'none';
+      starfieldContainer.style.transform = `scale(${1 + globalP * 0.15})`;
+    }
+    if (starLayers.length >= 3) {
+      starLayers[0].style.transform = `translate3d(0, ${globalP * 120}px, 0)`;
+      starLayers[1].style.transform = `translate3d(0, ${globalP * 280}px, 0)`;
+      starLayers[2].style.transform = `translate3d(0, ${globalP * 500}px, 0)`;
     }
 
     // Moon Orbital Revolution & Spiral Zoom equations
