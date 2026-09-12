@@ -112,7 +112,7 @@
 
           <!-- Card 01: Source Image (Moving) -->
           <div
-            class="glass-card relative rounded-3xl p-6 border border-white/10 bg-slate-950/40 backdrop-blur-xl flex flex-col justify-between space-y-6 shadow-2xl transition-all duration-300 hover:border-cyan-400/40 hover:bg-slate-950/60">
+            class="glass-card relative rounded-3xl p-6 border border-white/10 bg-slate-950/05 backdrop-blur-sm flex flex-col justify-between space-y-6 shadow-2xl transition-all duration-300 hover:border-cyan-400/40 hover:bg-slate-950/20">
             <div class="flex items-center justify-between font-mono text-xs text-slate-400">
               <span class="text-2xl font-serif font-light text-slate-200">01</span>
               <span class="uppercase tracking-[0.2em] text-cyan-400 font-semibold">SOURCE IMAGE (MOVING)</span>
@@ -133,7 +133,7 @@
               </div>
 
               <!-- Upload Preview Overlay -->
-              <div id="sourcePreviewContainer" class="absolute inset-0 rounded-2xl overflow-hidden bg-slate-950 z-20">
+              <div id="sourcePreviewContainer" class="absolute inset-0 rounded-2xl overflow-hidden bg-slate-950/90 z-20">
                 <img id="sourceImg" src="/assets/ohrc_source.jpg" alt="Source Upload Preview"
                   class="w-full h-full object-cover">
                 <div
@@ -152,7 +152,7 @@
 
           <!-- Card 02: Reference Image (Fixed) -->
           <div
-            class="glass-card relative rounded-3xl p-6 border border-white/10 bg-slate-950/40 backdrop-blur-xl flex flex-col justify-between space-y-6 shadow-2xl transition-all duration-300 hover:border-indigo-400/40 hover:bg-slate-950/60">
+            class="glass-card relative rounded-3xl p-6 border border-white/10 bg-slate-950/05 backdrop-blur-sm flex flex-col justify-between space-y-6 shadow-2xl transition-all duration-300 hover:border-indigo-400/40 hover:bg-slate-950/20">
             <div class="flex items-center justify-between font-mono text-xs text-slate-400">
               <span class="text-2xl font-serif font-light text-slate-200">02</span>
               <span class="uppercase tracking-[0.2em] text-indigo-400 font-semibold">REFERENCE IMAGE (FIXED)</span>
@@ -173,7 +173,7 @@
               </div>
 
               <!-- Upload Preview Overlay -->
-              <div id="refPreviewContainer" class="absolute inset-0 rounded-2xl overflow-hidden bg-slate-950 z-20">
+              <div id="refPreviewContainer" class="absolute inset-0 rounded-2xl overflow-hidden bg-slate-950/90 z-20">
                 <img id="refImg" src="/assets/tmc_ref.jpg" alt="Reference Upload Preview"
                   class="w-full h-full object-cover">
                 <div
@@ -202,23 +202,23 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
-          <div class="bg-slate-900/40 backdrop-blur-md p-3 rounded-xl border border-white/10 space-y-1">
+          <div class="bg-slate-900/05 backdrop-blur-sm p-3 rounded-xl border border-white/10 space-y-1">
             <div class="font-bold text-cyan-400 font-mono">1. Preprocessing</div>
             <p class="text-slate-400">Panchromatic & IR band normalization, solar azimuth alignment.</p>
           </div>
-          <div class="bg-slate-900/40 backdrop-blur-md p-3 rounded-xl border border-white/10 space-y-1">
+          <div class="bg-slate-900/05 backdrop-blur-sm p-3 rounded-xl border border-white/10 space-y-1">
             <div class="font-bold text-cyan-400 font-mono">2. Feature Detection</div>
             <p class="text-slate-400">Sun-angle invariant gradient descriptors & multi-scale pyramid.</p>
           </div>
-          <div class="bg-slate-900/40 backdrop-blur-md p-3 rounded-xl border border-white/10 space-y-1">
+          <div class="bg-slate-900/05 backdrop-blur-sm p-3 rounded-xl border border-white/10 space-y-1">
             <div class="font-bold text-cyan-400 font-mono">3. Uniform Binning</div>
             <p class="text-slate-400">N x N spatial tile constraint preventing keypoint clustering.</p>
           </div>
-          <div class="bg-slate-900/40 backdrop-blur-md p-3 rounded-xl border border-white/10 space-y-1">
+          <div class="bg-slate-900/05 backdrop-blur-sm p-3 rounded-xl border border-white/10 space-y-1">
             <div class="font-bold text-cyan-400 font-mono">4. Sub-Pixel Fit</div>
             <p class="text-slate-400">2D quadratic surface interpolation achieving &lt;0.20px accuracy.</p>
           </div>
-          <div class="bg-slate-900/40 backdrop-blur-md p-3 rounded-xl border border-white/10 space-y-1">
+          <div class="bg-slate-900/05 backdrop-blur-sm p-3 rounded-xl border border-white/10 space-y-1">
             <div class="font-bold text-cyan-400 font-mono">5. Transformation</div>
             <p class="text-slate-400">RANSAC Homography warp & seamless spatial alignment.</p>
           </div>
