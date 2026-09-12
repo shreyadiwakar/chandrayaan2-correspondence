@@ -35,7 +35,7 @@ body {
   background-position: center !important;
   background-repeat: no-repeat !important;
   pointer-events: none !important;
-  z-index: 0 !important;
+  z-index: -1 !important;
 }
 
 /* Starfield & Space Keyframe Animations */
