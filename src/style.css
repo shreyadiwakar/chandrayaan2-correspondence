@@ -18,9 +18,31 @@
 
 body {
   background-color: #000000;
+  background-image: url('/assets/milkyway-dark-sky.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: #f8fafc;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
+}
+
+/* 100% Fixed Milky Way Background Layer */
+#globalFixedSky {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-image: url('/assets/milkyway-dark-sky.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
 }
 
 /* Starfield & Space Keyframe Animations */
