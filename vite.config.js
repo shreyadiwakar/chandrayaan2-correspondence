@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: '.',
+  root: 'public',
   publicDir: 'public',
   server: {
     port: 5173,
@@ -21,4 +21,3 @@ export default defineConfig({
     }
   }
 });
-
