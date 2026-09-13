@@ -207,20 +207,26 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Start Server with dynamic fallback if port is occupied
-function startServer(portToTry) {
-  const server = app.listen(portToTry, () => {
-    console.log(`🚀 Chandrayaan-2 Image Correspondence API listening on http://localhost:${portToTry}`);
-  });
+// Export Express app for Vercel Serverless Functions & local server
+export default app;
 
-  server.on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-      console.warn(`⚠️ Port ${portToTry} is in use. Retrying on http://localhost:${portToTry + 1}...`);
-      startServer(portToTry + 1);
-    } else {
-      console.error('Server error:', err);
-    }
-  });
+// Start Server locally if not running in Vercel serverless environment
+if (!process.env.VERCEL) {
+  function startServer(portToTry) {
+    const server = app.listen(portToTry, () => {
+      console.log(`🚀 Chandrayaan-2 Image Correspondence API listening on http://localhost:${portToTry}`);
+    });
+
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.warn(`⚠️ Port ${portToTry} is in use. Retrying on http://localhost:${portToTry + 1}...`);
+        startServer(portToTry + 1);
+      } else {
+        console.error('Server error:', err);
+      }
+    });
+  }
+
+  startServer(PORT);
 }
 
-startServer(PORT);
