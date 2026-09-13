@@ -204,7 +204,7 @@ app.use((err, req, res, next) => {
 
 // Fallback serve index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Start Server with dynamic fallback if port is occupied

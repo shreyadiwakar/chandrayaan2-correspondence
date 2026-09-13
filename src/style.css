@@ -1,6 +1,6 @@
 /* Modern Obsidian Lunar Theme - Complete Utility & Glassmorphism Styling System */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
   --glow-cool: rgba(56, 189, 248, 0.45);
@@ -19,9 +19,18 @@
 body {
   background-color: #000000;
   color: #f8fafc;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', sans-serif;
   min-height: 100vh;
 }
+
+.font-orbitron,
+#heroStartTitle,
+#heroEndTitle h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
 
 /* Starfield & Space Keyframe Animations */
 @keyframes twinkle {
