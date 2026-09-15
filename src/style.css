@@ -19,14 +19,17 @@
 body {
   background-color: #000000;
   color: #f8fafc;
-  font-family: 'Inter', sans-serif;
   min-height: 100vh;
+}
+
+body, .font-sans, .font-serif, p, span, div {
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 
 .font-orbitron,
 #heroStartTitle,
 #heroEndTitle h2 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Orbitron', sans-serif !important;
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -139,7 +142,7 @@ body {
   padding: 0.2rem 0.5rem;
   border-radius: 0.375rem;
   font-size: 0.7rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .badge-emerald {
@@ -149,7 +152,7 @@ body {
   padding: 0.2rem 0.5rem;
   border-radius: 0.375rem;
   font-size: 0.7rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Custom Buttons */
@@ -403,7 +406,7 @@ body {
 }
 
 .font-mono {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .font-bold {
