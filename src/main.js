@@ -114,9 +114,11 @@ function selectPreset(preset) {
   // Update Metadata Badges
   const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
   setTxt('srcInstrumentBadge', preset.source.instrument);
-  setTxt('refInstrumentBadge', preset.reference.instrument);
-  setTxt('srcSensor', preset.source.instrument);
-  setTxt('refSensor', preset.reference.instrument);
+  setTxt('refInstrumentBadge', (preset.reference.instrument && preset.reference.instrument.includes('LRO')) ? preset.reference.instrument : 'LRO NAC (Narrow Angle Camera)');
+  setTxt('srcSensor', 'Loaded');
+  setTxt('refSensor', 'Loaded');
+  setTxt('srcImageOverlayLabel', preset.source.label || 'OHRC / TMC-2 / IIRS Source Image');
+  setTxt('refImageOverlayLabel', 'LRO NAC Reference Image');
   setTxt('srcRes', `${preset.source.resolution} m/px`);
   setTxt('refRes', `${preset.reference.resolution} m/px`);
   setTxt('srcSunElev', preset.source.sunElevation ? `${preset.source.sunElevation}°` : 'N/A');
